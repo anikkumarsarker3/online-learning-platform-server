@@ -128,9 +128,10 @@ async function run() {
         app.delete('/courses/:id', async (req, res) => {
             const id = req.params.id
             console.log(id)
-            const result1 = await coursesCollections.deleteOne({ _id: new ObjectId(id) });
-            const result2 = await enrollCollections.deleteOne({ course_id: id });
-            res.send(result1, result2)
+            const query = { _id: new ObjectId(id) };
+            const result = await coursesCollections.deleteOne(query);
+            res.send(result)
+
         })
 
 
