@@ -129,7 +129,7 @@ async function run() {
             const id = req.params.id
             console.log(id)
             const result1 = await coursesCollections.deleteOne({ _id: new ObjectId(id) });
-            const result2 = await enrollCollections.deleteOne({ _id: id });
+            const result2 = await enrollCollections.deleteOne({ course_id: id });
             res.send(result1, result2)
         })
 
