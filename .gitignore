@@ -1,3 +1,4 @@
 node_modules
 .env
 online learning platform sdk.json
+.vercel
