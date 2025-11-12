@@ -7,7 +7,7 @@ const app = express()
 app.use(cors())
 app.use(express.json());
 const port = process.env.PORT || 3000;
-console.log(process.env)
+// console.log(process.env)
 
 const decoded = Buffer.from(process.env.SECRET_KEY, "base64").toString("utf8");
 const serviceAccount = JSON.parse(decoded);
@@ -31,7 +31,7 @@ const verifyFireaseToken = async (req, res, next) => {
         return res.status(401).send({ message: 'Unathorized access' })
     }
     const token = authorizationToken.split(' ')[1];
-    console.log(token)
+    // console.log(token)
     if (!token) {
         return res.status(401).send({ message: 'Unathorized access' })
     }
@@ -39,7 +39,7 @@ const verifyFireaseToken = async (req, res, next) => {
     try {
         const tokenInfo = await admin.auth().verifyIdToken(token)
         req.token_email = tokenInfo.email
-        console.log('after tokenInfo', tokenInfo)
+        // console.log('after tokenInfo', tokenInfo)
         next();
     } catch {
         return res.status(401).send({ message: 'Unathorized access' })
@@ -118,13 +118,13 @@ async function run() {
         })
         app.get('/courses/:id', async (req, res) => {
             const id = req.params.id
-            console.log(id)
+            // console.log(id)
             const result = await coursesCollections.findOne({ _id: new ObjectId(id) });
             res.send(result)
         })
         app.delete('/courses/:id', async (req, res) => {
             const id = req.params.id
-            console.log(id)
+            // console.log(id)
             const query = { _id: new ObjectId(id) };
             const result = await coursesCollections.deleteOne(query);
             res.send(result)
@@ -134,17 +134,14 @@ async function run() {
 
 
         // await client.db("admin").command({ ping: 1 });
-        console.log("Pinged your deployment. You successfully connected to MongoDB!");
+        // console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } finally {
         // await client.close();
     }
 }
 run().catch(console.dir);
 
-
 app.get('/', (req, res) => {
     res.send('Server is Running')
 })
-app.listen(port, () => {
-    console.log('Localhost', port);
-})
+app.listen(port)
