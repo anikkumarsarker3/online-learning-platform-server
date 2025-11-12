@@ -37,3 +37,21 @@ It handles user authentication, course management, enrollments, and more — pro
 ```bash
 git clone https://github.com/anikkumarsarker3/online-learning-platform-server.git
 cd online-learning-platform-server
+
+
+### 2. Installation
+```bash
+npm install
+
+### 3. Create a .env file
+
+PORT=5000
+DB_USER=yourMongoUser
+DB_PASS=yourMongoPassword
+FIREBASE_SERVICE_ACCOUNT_KEY=yourFirebasePrivateKey
+
+
+### 3. Run the Server
+
+Production mode
+node index.js
