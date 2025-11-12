@@ -9,7 +9,6 @@ app.use(express.json());
 const port = process.env.PORT || 3000;
 console.log(process.env)
 
-// const serviceAccount = require("./online learning platform sdk.json");
 const decoded = Buffer.from(process.env.SECRET_KEY, "base64").toString("utf8");
 const serviceAccount = JSON.parse(decoded);
 
@@ -25,7 +24,6 @@ const client = new MongoClient(uri, {
         deprecationErrors: true,
     }
 });
-
 const verifyFireaseToken = async (req, res, next) => {
     const authorizationToken = req.headers.authorization;
     // console.log(authorizationToken)
@@ -43,7 +41,6 @@ const verifyFireaseToken = async (req, res, next) => {
         req.token_email = tokenInfo.email
         console.log('after tokenInfo', tokenInfo)
         next();
-
     } catch {
         return res.status(401).send({ message: 'Unathorized access' })
 
